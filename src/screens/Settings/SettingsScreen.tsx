@@ -1,4 +1,6 @@
+import PaddingWrapper from "@/src/components/PaddingWrapper";
 import Switch from "@/src/components/Switch";
+import Text from "@/src/components/Text";
 import useThemeStore from "@/src/store/theme";
 import type { AppTheme } from "@/src/styles/theme";
 import React from "react";
@@ -15,26 +17,18 @@ export default function SettingsScreen() {
   };
 
   return (
-    <Container>
+    <PaddingWrapper>
       <Title>설정</Title>
       <Row>
         <Label>다크 모드</Label>
         <Switch value={isDark} onValueChange={handleToggle} />
       </Row>
-    </Container>
+    </PaddingWrapper>
   );
 }
 
-const Container = styledNative.View`
-  flex: 1;
-  padding: 24px;
-  background-color: ${({ theme }: { theme: AppTheme }) =>
-    theme.colors.background};
-`;
-
-const Title = styledNative.Text`
+const Title = styledNative(Text)`
   ${({ theme }: { theme: AppTheme }) => theme.textVariants.heading1};
-  color: ${({ theme }: { theme: AppTheme }) => theme.colors.text};
 `;
 
 const Row = styledNative.View`
@@ -47,7 +41,6 @@ const Row = styledNative.View`
   justify-content: space-between;
 `;
 
-const Label = styledNative.Text`
+const Label = styledNative(Text)`
   ${({ theme }: { theme: AppTheme }) => theme.textVariants.body};
-  color: ${({ theme }: { theme: AppTheme }) => theme.colors.text};
 `;

@@ -22,9 +22,15 @@ export default function App() {
     <SafeAreaProvider>
       <ReactQueryProvider>
         <ThemeProvider theme={appTheme}>
-          <SafeAreaView style={{ flex: 1 }} edges={["top"]}>
+          <SafeAreaView
+            style={{ flex: 1, backgroundColor: appTheme.colors.background }}
+            edges={["top"]}
+          >
             <NavigationContainer theme={navTheme}>
-              <StatusBar style={mode === "dark" ? "light" : "dark"} />
+              <StatusBar
+                style={mode === "dark" ? "light" : "dark"}
+                backgroundColor="transparent"
+              />
               <RootNavigator />
             </NavigationContainer>
           </SafeAreaView>
