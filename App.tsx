@@ -7,6 +7,7 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { ThemeProvider } from "styled-components/native";
+import "./src/i18n";
 
 import ReactQueryProvider from "./providers/ReactQueryProvider";
 import RootNavigator from "./src/navigation/RootNavigator";
