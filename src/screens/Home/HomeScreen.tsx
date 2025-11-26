@@ -1,5 +1,5 @@
-import useThemeStore from "@/store/theme";
-import type { AppTheme } from "@/styles/theme";
+import useThemeStore from "@/src/store/theme";
+import type { AppTheme } from "@/src/styles/theme";
 import styledNative from "styled-components/native";
 
 export default function HomeScreen() {
