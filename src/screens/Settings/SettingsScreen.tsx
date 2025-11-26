@@ -1,10 +1,10 @@
-import PaddingWrapper from "@/src/components/PaddingWrapper";
-import Switch from "@/src/components/Switch";
-import Text from "@/src/components/Text";
-import useThemeStore from "@/src/store/theme";
-import type { AppTheme } from "@/src/styles/theme";
 import React from "react";
 import styledNative from "styled-components/native";
+import PaddingWrapper from "../../components/PaddingWrapper";
+import Switch from "../../components/Switch";
+import Text from "../../components/Text";
+import useThemeStore from "../../store/theme";
+import type { AppTheme } from "../../styles/theme";
 
 export default function SettingsScreen() {
   const mode = useThemeStore((state) => state.mode);

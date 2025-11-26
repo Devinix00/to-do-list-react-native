@@ -1,5 +1,5 @@
-import PaddingWrapper from "@/src/components/PaddingWrapper";
-import Text from "@/src/components/Text";
+import PaddingWrapper from "../../components/PaddingWrapper";
+import Text from "../../components/Text";
 
 export default function HomeScreen() {
   return (

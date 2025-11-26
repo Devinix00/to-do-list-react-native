@@ -1,13 +1,13 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 
-import { Colors } from "@/constants/theme";
-import { useColorScheme } from "@/hooks/use-color-scheme";
-import { HapticTab } from "@/src/components/HapticTab";
-import { IconSymbol } from "@/src/components/IconSymbol";
-import { TabsParamList } from "@/src/navigation/types";
-import HomeScreen from "@/src/screens/Home/HomeScreen";
-import SettingsScreen from "@/src/screens/Settings/SettingsScreen";
+import { Colors } from "../../constants/theme";
+import { useColorScheme } from "../../hooks/use-color-scheme";
+import { HapticTab } from "../components/HapticTab";
+import { IconSymbol } from "../components/IconSymbol";
+import HomeScreen from "../screens/Home/HomeScreen";
+import SettingsScreen from "../screens/Settings/SettingsScreen";
+import { TabsParamList } from "./types";
 
 const Tab = createBottomTabNavigator<TabsParamList>();
 

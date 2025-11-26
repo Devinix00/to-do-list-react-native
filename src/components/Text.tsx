@@ -1,7 +1,7 @@
 import React from "react";
 import styledNative from "styled-components/native";
 
-import type { AppTheme } from "@/src/styles/theme";
+import type { AppTheme } from "../styles/theme";
 
 type Variant = "heading1" | "heading2" | "body" | "small";
 

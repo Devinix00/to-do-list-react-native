@@ -1,8 +1,9 @@
 // src/store/theme.ts
-import STORAGE_KEYS from "@/constants/storageKeys";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+
+import STORAGE_KEYS from "../constants/storageKeys";
 
 interface ThemeState {
   mode: "light" | "dark";
@@ -23,3 +24,4 @@ const useThemeStore = create(
 );
 
 export default useThemeStore;
+

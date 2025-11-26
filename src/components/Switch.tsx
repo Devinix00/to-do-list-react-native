@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Animated, Pressable, StyleSheet } from "react-native";
 import { useTheme } from "styled-components/native";
 
-import type { AppTheme } from "@/src/styles/theme";
+import type { AppTheme } from "../styles/theme";
 
 interface SwitchProps {
   value: boolean;
