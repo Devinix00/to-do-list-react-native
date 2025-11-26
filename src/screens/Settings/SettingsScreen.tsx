@@ -2,16 +2,20 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import styledNative from "styled-components/native";
 
+import Button from "../../components/Button";
 import PaddingWrapper from "../../components/PaddingWrapper";
 import Switch from "../../components/Switch";
 import Text from "../../components/Text";
+import useLangStore from "../../store/lang";
 import useThemeStore from "../../store/theme";
 import type { AppTheme } from "../../styles/theme";
 
 export default function SettingsScreen() {
   const mode = useThemeStore((state) => state.mode);
   const setMode = useThemeStore((state) => state.setMode);
-  const { t, i18n } = useTranslation();
+  const lang = useLangStore((state) => state.lang);
+  const setLang = useLangStore((state) => state.setLang);
+  const { t } = useTranslation("settings");
 
   const isDark = mode === "dark";
 
@@ -19,46 +23,46 @@ export default function SettingsScreen() {
     setMode(value ? "dark" : "light");
   };
 
-  const currentLang = i18n.language.startsWith("ko") ? "ko" : "en";
-
-  const handleChangeLanguage = (lang: "ko" | "en") => {
-    i18n.changeLanguage(lang);
+  const handleChangeLanguage = (langCode: "ko" | "en") => {
+    setLang(langCode);
   };
 
   return (
     <PaddingWrapper>
-      <Text variant="heading1">{t("settings_title")}</Text>
-      <Row>
-        <Text variant="body">{t("dark_mode")}</Text>
-        <Switch value={isDark} onValueChange={handleToggle} />
-      </Row>
-      <Row>
-        <Text variant="body">{t("language")}</Text>
-        <LanguageSelector>
-          <LanguageButton
-            active={currentLang === "ko"}
-            onPress={() => handleChangeLanguage("ko")}
-          >
-            <LanguageText active={currentLang === "ko"}>
-              {t("language_ko")}
-            </LanguageText>
-          </LanguageButton>
-          <LanguageButton
-            active={currentLang === "en"}
-            onPress={() => handleChangeLanguage("en")}
-          >
-            <LanguageText active={currentLang === "en"}>
-              {t("language_en")}
-            </LanguageText>
-          </LanguageButton>
-        </LanguageSelector>
-      </Row>
+      <Text variant="heading1">{t("title")}</Text>
+      <Settings>
+        <Row>
+          <Text variant="body">{t("dark_mode")}</Text>
+          <Switch value={isDark} onValueChange={handleToggle} />
+        </Row>
+        <Row>
+          <Text variant="body">{t("language")}</Text>
+          <LanguageSelector>
+            <Button
+              label={t("language_ko")}
+              size="sm"
+              variant={lang === "ko" ? "primary" : "ghost"}
+              onPress={() => handleChangeLanguage("ko")}
+            />
+            <Button
+              label={t("language_en")}
+              size="sm"
+              variant={lang === "en" ? "primary" : "ghost"}
+              onPress={() => handleChangeLanguage("en")}
+            />
+          </LanguageSelector>
+        </Row>
+      </Settings>
     </PaddingWrapper>
   );
 }
 
-const Row = styledNative.View`
+const Settings = styledNative.View`
   margin-top: 20px;
+  gap: 10px;
+`;
+
+const Row = styledNative.View`
   padding: 16px 20px;
   border-radius: 12px;
   background-color: ${({ theme }: { theme: AppTheme }) => theme.colors.surface};
@@ -70,22 +74,4 @@ const Row = styledNative.View`
 const LanguageSelector = styledNative.View`
   flex-direction: row;
   gap: 8px;
-`;
-
-const LanguageButton = styledNative.TouchableOpacity<{ active: boolean }>`
-  padding: 6px 12px;
-  border-radius: 999px;
-  background-color: ${({
-    active,
-    theme,
-  }: {
-    active: boolean;
-    theme: AppTheme;
-  }) => (active ? theme.colors.primary : theme.colors.surfaceElevated)};
-`;
-
-const LanguageText = styledNative(Text)<{ active: boolean }>`
-  font-size: 13px;
-  color: ${({ active, theme }: { active: boolean; theme: AppTheme }) =>
-    active ? theme.colors.surface : theme.colors.textMuted};
 `;

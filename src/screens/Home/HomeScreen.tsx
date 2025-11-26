@@ -3,11 +3,11 @@ import PaddingWrapper from "../../components/PaddingWrapper";
 import Text from "../../components/Text";
 
 export default function HomeScreen() {
-  const { t } = useTranslation();
+  const { t } = useTranslation("home");
 
   return (
     <PaddingWrapper>
-      <Text variant="heading1">{t("home_title")}</Text>
+      <Text variant="heading1">{t("title")}</Text>
     </PaddingWrapper>
   );
 }
