@@ -1,15 +1,17 @@
 import type { AppTheme } from "@/src/styles/theme";
+import React from "react";
 import styledNative from "styled-components/native";
 
-export default function HomeScreen() {
+export default function SettingsScreen() {
   return (
     <Container>
-      <Title>홈화면</Title>
+      <Title>SettingsScreen</Title>
     </Container>
   );
 }
 
 const Container = styledNative.View`
+  flex: 1;
 `;
 
 const Title = styledNative.Text`

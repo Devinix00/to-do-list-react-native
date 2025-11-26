@@ -5,6 +5,7 @@ import {
 } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { ThemeProvider } from "styled-components/native";
 
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
@@ -18,13 +19,17 @@ export default function App() {
   const navTheme = mode === "dark" ? DarkTheme : DefaultTheme;
 
   return (
-    <ReactQueryProvider>
-      <ThemeProvider theme={appTheme}>
-        <NavigationContainer theme={navTheme}>
-          <StatusBar style={mode === "dark" ? "light" : "dark"} />
-          <RootNavigator />
-        </NavigationContainer>
-      </ThemeProvider>
-    </ReactQueryProvider>
+    <SafeAreaProvider>
+      <ReactQueryProvider>
+        <ThemeProvider theme={appTheme}>
+          <SafeAreaView style={{ flex: 1 }} edges={["top"]}>
+            <NavigationContainer theme={navTheme}>
+              <StatusBar style={mode === "dark" ? "light" : "dark"} />
+              <RootNavigator />
+            </NavigationContainer>
+          </SafeAreaView>
+        </ThemeProvider>
+      </ReactQueryProvider>
+    </SafeAreaProvider>
   );
 }

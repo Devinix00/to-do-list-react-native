@@ -1,10 +1,8 @@
 export type TabsParamList = {
   Home: undefined;
-  Explore: undefined;
+  Settings: undefined;
 };
 
 export type RootStackParamList = {
   Tabs: undefined;
-  Modal: undefined;
 };
-
