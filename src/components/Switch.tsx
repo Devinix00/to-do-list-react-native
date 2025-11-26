@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import { Animated, Pressable, StyleSheet } from "react-native";
-import { useTheme } from "styled-components/native";
+import { Animated, Pressable } from "react-native";
+import styledNative, { useTheme } from "styled-components/native";
 
 import type { AppTheme } from "../styles/theme";
 
@@ -8,6 +8,25 @@ interface SwitchProps {
   value: boolean;
   onValueChange: (value: boolean) => void;
 }
+
+const Track = styledNative(Animated.View)`
+  width: 48px;
+  height: 24px;
+  border-radius: 12px;
+  justify-content: center;
+  padding: 0px;
+`;
+
+const Thumb = styledNative(Animated.View)`
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  shadow-color: #000;
+  shadow-opacity: 0.15;
+  shadow-offset: 0px 2px;
+  shadow-radius: 3px;
+  elevation: 2;
+`;
 
 export default function Switch({ value, onValueChange }: SwitchProps) {
   const theme = useTheme() as AppTheme;
@@ -28,7 +47,7 @@ export default function Switch({ value, onValueChange }: SwitchProps) {
 
   const thumbTranslateX = animatedValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [2, 20],
+    outputRange: [0, 24],
   });
 
   const handleToggle = () => {
@@ -37,39 +56,16 @@ export default function Switch({ value, onValueChange }: SwitchProps) {
 
   return (
     <Pressable onPress={handleToggle} hitSlop={8}>
-      <Animated.View
-        style={[styles.track, { backgroundColor: trackBackground }]}
-      >
-        <Animated.View
-          style={[
-            styles.thumb,
-            {
-              transform: [{ translateX: thumbTranslateX }],
-              backgroundColor: theme.colors.surface,
-            },
-          ]}
+      <Track style={{ backgroundColor: trackBackground }}>
+        <Thumb
+          style={{
+            transform: [{ translateX: thumbTranslateX }],
+            backgroundColor: value
+              ? theme.colors.primaryLight
+              : theme.colors.surface,
+          }}
         />
-      </Animated.View>
+      </Track>
     </Pressable>
   );
 }
-
-const styles = StyleSheet.create({
-  track: {
-    width: 46,
-    height: 28,
-    borderRadius: 16,
-    paddingHorizontal: 2,
-    justifyContent: "center",
-  },
-  thumb: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    shadowColor: "#000",
-    shadowOpacity: 0.15,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 3,
-    elevation: 2,
-  },
-});
