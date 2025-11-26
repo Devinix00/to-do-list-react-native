@@ -6,7 +6,7 @@ function PaddingWrapper({ children }: { children: React.ReactNode }) {
 }
 
 const Container = styledNative.View`
-  padding: 16px;
+  padding: 20px;
 `;
 
 export default PaddingWrapper;

@@ -1,14 +1,23 @@
 import React from "react";
-import styled from "styled-components/native";
+import styledNative from "styled-components/native";
 
 import type { AppTheme } from "@/src/styles/theme";
 
-const BaseText = styled.Text`
-  color: ${({ theme }: { theme: AppTheme }) => theme.colors.text};
+type Variant = "heading1" | "heading2" | "body" | "small";
+
+const BaseText = styledNative.Text<{ variant?: Variant }>`
+  color: ${(props: { theme: AppTheme }) => props.theme.colors.text};
+  ${(props: { theme: AppTheme; variant?: Variant }) =>
+    props.variant
+      ? props.theme.textVariants[props.variant]
+      : props.theme.textVariants.body};
 `;
 
-export type TextProps = React.ComponentProps<typeof BaseText>;
+export interface TextProps
+  extends Omit<React.ComponentProps<typeof BaseText>, "variant"> {
+  variant?: Variant;
+}
 
-export default function Text(props: TextProps) {
-  return <BaseText {...props} />;
+export default function Text({ variant = "body", ...rest }: TextProps) {
+  return <BaseText variant={variant} {...rest} />;
 }

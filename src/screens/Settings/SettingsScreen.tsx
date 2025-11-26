@@ -18,29 +18,21 @@ export default function SettingsScreen() {
 
   return (
     <PaddingWrapper>
-      <Title>설정</Title>
+      <Text variant="heading1">설정</Text>
       <Row>
-        <Label>다크 모드</Label>
+        <Text variant="body">다크 모드</Text>
         <Switch value={isDark} onValueChange={handleToggle} />
       </Row>
     </PaddingWrapper>
   );
 }
 
-const Title = styledNative(Text)`
-  ${({ theme }: { theme: AppTheme }) => theme.textVariants.heading1};
-`;
-
 const Row = styledNative.View`
-  margin-top: 24px;
+  margin-top: 20px;
   padding: 16px 20px;
   border-radius: 12px;
   background-color: ${({ theme }: { theme: AppTheme }) => theme.colors.surface};
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-`;
-
-const Label = styledNative(Text)`
-  ${({ theme }: { theme: AppTheme }) => theme.textVariants.body};
 `;
