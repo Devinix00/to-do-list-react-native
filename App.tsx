@@ -1,4 +1,3 @@
-// App.tsx
 import {
   DarkTheme,
   DefaultTheme,
@@ -8,22 +7,21 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { ThemeProvider } from "styled-components/native";
 
-import { useColorScheme } from "@/hooks/use-color-scheme";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import RootNavigator from "@/src/navigation/RootNavigator";
-import { darkTheme, lightTheme } from "@/src/theme/color";
+import useThemeStore from "@/store/theme";
+import { darkTheme, lightTheme } from "@/styles/theme";
 
 export default function App() {
-  const colorScheme = useColorScheme();
-
-  const appTheme = colorScheme === "dark" ? darkTheme : lightTheme;
-  const navTheme = colorScheme === "dark" ? DarkTheme : DefaultTheme;
+  const mode = useThemeStore((state) => state.mode);
+  const appTheme = mode === "dark" ? darkTheme : lightTheme;
+  const navTheme = mode === "dark" ? DarkTheme : DefaultTheme;
 
   return (
     <ReactQueryProvider>
       <ThemeProvider theme={appTheme}>
         <NavigationContainer theme={navTheme}>
-          <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
+          <StatusBar style={mode === "dark" ? "light" : "dark"} />
           <RootNavigator />
         </NavigationContainer>
       </ThemeProvider>
