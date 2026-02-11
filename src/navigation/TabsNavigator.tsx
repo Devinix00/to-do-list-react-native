@@ -2,10 +2,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 
 import { useTranslation } from "react-i18next";
-import { Colors } from "../../constants/theme";
-import { useColorScheme } from "../../hooks/use-color-scheme";
 import { HapticTab } from "../components/HapticTab";
 import { IconSymbol } from "../components/IconSymbol";
+import { Colors } from "../constants/theme";
+import { useColorScheme } from "../hooks/use-color-scheme";
 import HomeScreen from "../screens/Home/HomeScreen";
 import SettingsScreen from "../screens/Settings/SettingsScreen";
 import { TabsParamList } from "./types";

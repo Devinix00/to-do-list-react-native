@@ -8,9 +8,9 @@ import React, { useEffect } from "react";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { ThemeProvider } from "styled-components/native";
 
-import ReactQueryProvider from "./providers/ReactQueryProvider";
 import i18n from "./src/i18n";
 import RootNavigator from "./src/navigation/RootNavigator";
+import ReactQueryProvider from "./src/providers/ReactQueryProvider";
 import useLangStore from "./src/store/lang";
 import useThemeStore from "./src/store/theme";
 import { darkTheme, lightTheme } from "./src/styles/theme";
